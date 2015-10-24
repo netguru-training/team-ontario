@@ -16,9 +16,9 @@ puts 'Seeds start'
 end
 
 parent = User.create!(email: 'parent@page.com',password: 'pass1234', family_id: 1, name: Faker::Name.name )
-parent1 = User.create!(email: 'parent1@page.com',password: 'pass1234', family_id: 2, Faker::Name.name)
-kid = User.create!(email: 'kid@page.com',password: 'pass1234', family_id: 1, Faker::Name.name)
-kid1 = User.create!(email: 'kid1@page.com',password: 'pass1234', family_id: 2,Faker::Name.name)
+parent1 = User.create!(email: 'parent1@page.com',password: 'pass1234', family_id: 2, name: Faker::Name.name)
+kid = User.create!(email: 'kid@page.com',password: 'pass1234', family_id: 1, name: Faker::Name.name)
+kid1 = User.create!(email: 'kid1@page.com',password: 'pass1234', family_id: 2, name: Faker::Name.name)
 
 parent.add_role "parent"
 kid.add_role "kid"
@@ -33,13 +33,13 @@ EventsType.create!( name: "duty")
 (1..30).each do |i|
   Event.create!(name: Faker::Lorem.word,
     description: Faker::Lorem.sentence, points: rand(-100..100),
-    family_id: rand(1..2), events_type_id: rand(1..3)
+    family_id: rand(1..2), events_type_id: rand(1..3))
   KidEvent.create!(user_id: rand(1..4), event_id: i )
 end
 
 
 30.times do
-  Comment.create!(content: Faker::Lorem.sentence, user_id: rand(1..4) )
+  Comment.create!(content: Faker::Lorem.sentence, user_id: rand(1..4), kid_event_id: rand(1..30) )
 end
 
 
