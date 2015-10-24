@@ -1,5 +1,4 @@
 class ParentPanelController < ApplicationController
-  def index
-    @family_members = current_user.family.users
-  end
+  expose(:family_members) { current_user.family.users.select { |user| user != current_user } }
+
 end

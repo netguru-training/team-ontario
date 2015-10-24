@@ -7,7 +7,7 @@
     %tr
       %th Family members
   %tbody
-    - @family_members.each do |member|
+    - family_members.each do |member|
       %tr
         %td= link_to member.email, member
 
