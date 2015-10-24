@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   belongs_to :family
   has_many :kid_events
   has_many :events, through: :kid_events
+  has_many :comments
 end

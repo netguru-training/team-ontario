@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024104512) do
+ActiveRecord::Schema.define(version: 20151024131712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,10 @@ ActiveRecord::Schema.define(version: 20151024104512) do
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
+
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20151024104512) do
     t.integer  "points"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "events_type_id"
     t.integer  "family_id"
+    t.integer  "events_type_id"
   end
 
   add_index "events", ["events_type_id"], name: "index_events_on_events_type_id", using: :btree
@@ -105,6 +108,7 @@ ActiveRecord::Schema.define(version: 20151024104512) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "comments", "users"
   add_foreign_key "events", "events_types"
   add_foreign_key "events", "families"
   add_foreign_key "users", "families"
