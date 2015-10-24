@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
   expose(:events)
   expose(:event)
-  expose(:family)
 
   def index
   end
@@ -33,6 +32,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :description, :points)
+    params.require(:event).permit(:name, :description, :points, :family_id, :events_type_id)
   end
 end
