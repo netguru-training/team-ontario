@@ -6,6 +6,6 @@ class ParentPanelController < ApplicationController
   before_action :authenticate_user!, :verify_parent_role
 
   def verify_parent_role
-    redirect_to(root_path, notice: "Next time you'll be punished!") if current_user.has_role?(:kid)
+    redirect_to(root_path, alert: "Next time you'll be punished!") if current_user.has_role?(:kid)
   end
 end
