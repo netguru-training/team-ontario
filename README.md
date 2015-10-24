@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/netguru-training/team-ontario.svg?branch=master)](https://travis-ci.org/netguru-training/team-ontario)
 
-[![Heroku](http://lit-crag-4267.herokuapp.com/?app=heroku-badge)]
+[![Heroku](https://heroku-badge.herokuapp.com/?app=lit-crag-4267)]
 
 # Team Ontario (Katowice 2015 workshops)
 
