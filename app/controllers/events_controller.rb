@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   expose(:events)
   expose(:event)
+  expose(:events_types) {EventsType.all}
 
   def index
   end
