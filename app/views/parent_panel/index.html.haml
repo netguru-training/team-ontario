@@ -1,0 +1,16 @@
+%h1 Parent Panel
+
+= link_to 'Send invitation', new_user_invitation_path
+
+%table.right
+  %thead
+    %tr
+      %th Family members
+  %tbody
+    - family_members.each do |member|
+      %tr
+        %td= link_to member.email, member
+
+
+
+
