@@ -3,6 +3,7 @@
 Devise.setup do |config|
 
   domain = Rails.application.secrets.domain_name
+  domain ||= 'example.com'
 
   config.secret_key = Rails.application.secrets.secret_key_base
 

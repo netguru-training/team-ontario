@@ -15,6 +15,7 @@ gem 'pg'
 gem 'simple_form'
 gem 'rolify'
 gem 'devise_invitable'
+gem 'figaro'
 
 group :development do
   gem 'better_errors'
