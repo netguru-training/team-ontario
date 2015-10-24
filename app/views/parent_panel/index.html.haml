@@ -1,15 +1,20 @@
 %h1 Parent Panel
 
-= link_to 'Send invitation', new_user_invitation_path
+= notice
 
-%table.right
-  %thead
-    %tr
-      %th Family members
-  %tbody
-    - family_members.each do |member|
+.left
+  = render 'events/form'
+
+.right
+  %h3= link_to 'Send invitation', new_user_invitation_path
+  %table
+    %thead
       %tr
-        %td= link_to member.email, member
+        %th Family members
+    %tbody
+      - family_members.each do |member|
+        %tr
+          %td= link_to member.email, member
 
 
 
