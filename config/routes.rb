@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'parent_panel/index'
+  get 'parent/panel', to: 'parent_panel#index'
 
   root to: 'visitors#index'
   devise_for :users
