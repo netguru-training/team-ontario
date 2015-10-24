@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_family_id, only: [:create, :update, :index]
+  before_action :set_event, only: [:create, :update]
 
   expose(:events) { Event.belonging_to_family @family_id }
   expose(:event)
@@ -12,11 +13,11 @@ class EventsController < ApplicationController
   end
 
   def create
-    self.event = Event.new(event_params.merge(family_id: @family_id))
     if event.save
       redirect_to events_path, notice: 'Event was succesfully created'
     else
-      render :new, notice: 'Event creation failed!'
+      render :new, warning: event.errors.full_messages.to_sentence
+
     end
   end
 
@@ -24,7 +25,7 @@ class EventsController < ApplicationController
     if event.save
       redirect_to event_path(event), notice: 'Event was succesfully updated'
     else
-      render :edit, notice: 'Update failed!'
+      render :edit, warning: event.errors.full_messages.to_sentence
     end
   end
 
@@ -35,11 +36,15 @@ class EventsController < ApplicationController
 
   private
 
+  def set_event
+    self.event = Event.new(event_params.merge(family_id: @family_id))
+  end
+
   def set_family_id
-    @family_id = current_user.family_id
+    @family_id ||= current_user.family_id
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :points, :events_type_id)
+    params.require(:event).permit(:name, :description, :points, :events_type_id).merge(family_id: @family_id)
   end
 end
