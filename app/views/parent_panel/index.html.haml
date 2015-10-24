@@ -2,19 +2,18 @@
 
 = alert
 
-.left
+.col-sm-6.col-md-6.col-lg-6.jumbotron
+  .h3 Add new event
   = render 'events/form'
+.col-sm-6.col-md-6.col-lg-6.jumbotron
+  .right
+    .h3 Members of #{current_user.family.name}
+    - family_members.each do |member|
+      %li= link_to member.email, member
+    %br/
+    %br/
+    %a.btn.btn-default{:href => new_user_invitation_path, :role => "button"} Add new member
 
-.right
-  %h3= link_to 'Send invitation', new_user_invitation_path
-  %table
-    %thead
-      %tr
-        %th Family members
-    %tbody
-      - family_members.each do |member|
-        %tr
-          %td= link_to member.email, member
 
 
 
