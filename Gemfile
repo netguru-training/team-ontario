@@ -14,6 +14,7 @@ gem 'haml-rails'
 gem 'pg'
 gem 'simple_form'
 gem 'rolify'
+gem 'decent_exposure'
 gem 'devise_invitable'
 
 group :production do

@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20151024104512) do
     t.integer  "points"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "family_id"
     t.integer  "events_type_id"
+    t.integer  "family_id"
   end
 
   add_index "events", ["events_type_id"], name: "index_events_on_events_type_id", using: :btree
