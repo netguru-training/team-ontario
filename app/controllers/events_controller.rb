@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :set_family_id, only: [:create, :update]
 
   expose(:events) { Event.belonging_to_family current_user.family_id }
   expose(:event)
@@ -31,6 +32,9 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def set_family_id
+  end
 
   def event_params
     params.require(:event).permit(:name, :description, :points, :events_type_id)
