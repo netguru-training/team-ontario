@@ -7,6 +7,10 @@ class EventsController < ApplicationController
   expose(:event)
   expose(:events_types) {EventsType.all}
 
+  expose(:duties) { EventsType.find(3).events.where(family: current_user.family)}
+  expose(:punishments) { EventsType.find(1).events.where(family: current_user.family)}
+  expose(:awards) { EventsType.find(2).events.where(family: current_user.family)}
+
   def index
   end
 
