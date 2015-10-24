@@ -21,4 +21,5 @@ class Ability
         comment.try(:user) == user || user.role?(:parent)
       end
     end
+  end
 end
