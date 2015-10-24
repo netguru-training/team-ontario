@@ -11,18 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024131712) do
+ActiveRecord::Schema.define(version: 20151024134347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "user_id"
+    t.integer  "kid_event_id"
   end
 
+  add_index "comments", ["kid_event_id"], name: "index_comments_on_kid_event_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|
@@ -51,8 +53,10 @@ ActiveRecord::Schema.define(version: 20151024131712) do
   end
 
   create_table "kid_events", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "event_id"
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "kid_events", ["event_id"], name: "index_kid_events_on_event_id", using: :btree
@@ -108,6 +112,7 @@ ActiveRecord::Schema.define(version: 20151024131712) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "comments", "kid_events"
   add_foreign_key "comments", "users"
   add_foreign_key "events", "events_types"
   add_foreign_key "events", "families"
