@@ -15,7 +15,11 @@ gem 'pg'
 gem 'simple_form'
 gem 'rolify'
 gem 'devise_invitable'
-gem 'figaro'
+
+group :production do
+  gem 'figaro'
+  gem 'rails_12factor'
+end
 
 group :development do
   gem 'better_errors'
