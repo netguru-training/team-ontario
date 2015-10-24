@@ -7,3 +7,5 @@ class Event < ActiveRecord::Base
 
   scope :belonging_to_family, -> (family_id) { where("family_id = ?", family_id) }
 end
+
+

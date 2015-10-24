@@ -1,2 +1,20 @@
 %h1= user.name
+%table.table.table-condensed
+  %tbody
+    %tr
+      %td= "Name: "
+      %td= user.name
+    %tr
+      %td= "User's family: "
+      %td= user.family.name
+%b Family Events:
+%hr
+%ul
+  - user.family.events.each do |event|
+    .alert{ "class" => "alert-#{event.events_type.color}"}
+      %li= event.name
+      %li= event.events_type.name
+
+
+
 
