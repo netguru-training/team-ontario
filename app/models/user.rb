@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :family
+  has_many :kid_events
+  has_many :events, through: :kid_events
 end
