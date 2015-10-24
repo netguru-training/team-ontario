@@ -1,0 +1,12 @@
+%table.table.table-condensed
+  %thead
+    %tr
+      %th= 'Event name'
+      %th= 'Description'
+      %th= 'Points'
+  %tbody
+    - events.each do |e|
+      %tr
+        %td= e.name
+        %td= e.description
+        %td= e.points
