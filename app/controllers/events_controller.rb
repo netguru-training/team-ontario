@@ -1,7 +1,13 @@
 class EventsController < ApplicationController
-  expose(:events, ancestor: :family)
-  expose(:event, ancestor: :family)
+  expose(:events)
+  expose(:event)
   expose(:family)
+
+  def index
+  end
+
+  def new
+  end
 
   def create
     if event.save
