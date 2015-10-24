@@ -11,10 +11,9 @@ class EventsController < ApplicationController
   end
 
   def create
+    self.event = Event.new(event_params.merge(family_id: current_user.family_id))
     if event.save
-      redirect_to event_path(event), notice: 'Event was succesfully created'
-    else
-      render :new
+      redirect_to events_path, notice: 'Event was succesfully created'
     end
   end
 
@@ -34,6 +33,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :description, :points, :family_id, :events_type_id)
+    params.require(:event).permit(:name, :description, :points, :events_type_id)
   end
 end
