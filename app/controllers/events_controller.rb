@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  expose(:events)
+
+  expose(:events) { Event.belonging_to_family current_user.family_id }
   expose(:event)
   expose(:events_types) {EventsType.all}
 
