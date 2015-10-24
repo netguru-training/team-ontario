@@ -3,9 +3,8 @@
 Devise.setup do |config|
 
   domain = Rails.application.secrets.domain_name
-  domain ||= 'example.com'
 
-  config.secret_key = 'ontario'
+  config.secret_key = Rails.application.secrets.secret_key_base
 
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -18,7 +17,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'no-reply@' + Rails.application.secrets.domain_name
+  config.mailer_sender = 'no-reply@' + domain #Rails.application.secrets.domain_name
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
