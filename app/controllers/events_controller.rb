@@ -12,19 +12,19 @@ class EventsController < ApplicationController
   end
 
   def create
-    event = Event.new(event_params.merge(family_id: @family_id))
+    self.event = Event.new(event_params.merge(family_id: @family_id))
     if event.save
       redirect_to events_path, notice: 'Event was succesfully created'
     else
-      render :new
+      render :new, notice: 'Event creation failed!'
     end
   end
 
   def update
     if event.save
-      redirect_to event_path(event), notice: 'Event was succesfully created'
+      redirect_to event_path(event), notice: 'Event was succesfully updated'
     else
-      render :edit
+      render :edit, notice: 'Update failed!'
     end
   end
 
