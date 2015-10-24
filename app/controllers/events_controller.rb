@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
-  before_action :set_family_id, only: [:create, :update, :index]
+
   before_action :set_event, only: [:create, :update]
+  before_action :set_family_id
 
   expose(:events) { Event.belonging_to_family @family_id }
   expose(:event)
