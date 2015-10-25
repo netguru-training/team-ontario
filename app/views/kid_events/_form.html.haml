@@ -1,3 +1,4 @@
-= simple_form_for kid_event, url: event_kid_events_path do |f|
-  = f.input :user_id, collection: users, input_html: { id: 'kids', multiple: "multiple" }
-  = f.button :submit
+= form_tag event_kid_events_path do
+  = label_tag :kids
+  = select_tag :user_ids, options_from_collection_for_select(users, 'id', 'name'), { id: 'kids', multiple: "multiple", multiple: true, class: 'form-control' }
+  = submit_tag "Sign in", class: "btn btn-default"
