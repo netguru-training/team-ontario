@@ -33,11 +33,24 @@
               %hr
                 - kid_event.comments.each do |comment|
                   = comment.content
+                  %br
             .pull-right
               = "Done: "
               .span{ 'class' => "#{kid_event.decorate.done?}" }
             .pull-left
-              = link_to "Add comment", new_kid_event_comment_path(kid_event)
+              %button.btn.btn-primary.btn-sm{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+                = "Add comment"
+              #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+                .modal-dialog{:role => "document"}
+                  .modal-content
+                    .modal-header
+                      %h4#myModalLabel.modal-title Comment
+                    .modal-body
+                      = simple_form_for [kid_event, Comment.new], :url => url_for(action: 'create', controller: 'comments', kid_event_id: kid_event.id), method: 'post' do |f|
+                        = f.input :content
+                        = f.button :submit
+
+
 
 
 
