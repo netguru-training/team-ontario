@@ -1,11 +1,10 @@
 class KidPanelController < ApplicationController
-  expose(:family_members) { current_user.family.users.select { |user| user != current_user } }
-  expose(:event) { Event.new }
-  expose(:events_types) { EventsType.all }
+  expose(:user) { current_user }
+  expose(:events) { Event.joins(:kid_events).where('user_id = ?', current_user.id) }
 
   before_action :authenticate_user!, :verify_parent_role
 
   def verify_parent_role
-    redirect_to(root_path, alert: "TODO") if current_user.has_role?(:parent)
+    redirect_to(root_path, alert: "Grow up!") if current_user.has_role?(:parent)
   end
 end
