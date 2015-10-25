@@ -18,6 +18,8 @@ gem 'decent_exposure'
 gem 'devise_invitable'
 gem 'draper'
 gem 'decent_decoration'
+gem 'faker'
+
 
 group :production do
   gem 'figaro'
@@ -35,7 +37,6 @@ end
 group :development, :test do
   gem 'byebug'
   gem 'factory_girl_rails'
-  gem 'faker'
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'rspec-rails'
