@@ -17,7 +17,7 @@ class Devise::InvitationsController < DeviseController
   def create
     return redirect_to(root_path) unless current_inviter.has_role? :parent
     self.resource = invite_resource
-    self.resource.update(family: current_inviter.family)
+    self.resource.update(family: current_inviter.family, name: params[:name])
     self.resource.add_role params[:role]
 
     resource_invited = resource.errors.empty?

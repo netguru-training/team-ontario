@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   expose(:user, attributes: :user_params)
 
+
   def show
   end
 
