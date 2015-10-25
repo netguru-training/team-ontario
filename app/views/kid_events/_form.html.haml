@@ -1,4 +1,3 @@
-= simple_form_for kid_event do |f|
+= simple_form_for kid_event, url: event_kid_events_path do |f|
   = f.input :user_id, collection: users
-  = f.input :event_id, collection: events
   = f.button :submit
