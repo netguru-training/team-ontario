@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'kid_events/new'
+
   get 'parent/panel', to: 'parent_panel#index'
 
   root to: 'visitors#index'
