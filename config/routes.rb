@@ -9,8 +9,6 @@ Rails.application.routes.draw do
 
   resources :events
 
-  resources :kid_events
-
   resources :kid_events do
     resources :comments
   end
