@@ -16,6 +16,8 @@ gem 'simple_form'
 gem 'rolify'
 gem 'decent_exposure'
 gem 'devise_invitable'
+gem 'draper'
+gem 'decent_decoration'
 
 group :production do
   gem 'figaro'
