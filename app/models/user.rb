@@ -16,10 +16,12 @@ class User < ActiveRecord::Base
   scope :kids_belonging_to_family, -> (family_id) { where("family_id = ?", family_id).with_role(:kid) }
 
   def add_to_total_score (amount)
+    self.total_score ||= 0
     self.total_score += amount
   end
 
   def subtract_from_total_score (amount)
+    self.total_score ||= 0
     self.total_score -= amount
   end
 
