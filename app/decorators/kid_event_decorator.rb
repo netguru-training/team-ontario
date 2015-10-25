@@ -5,4 +5,8 @@ class KidEventDecorator < Draper::Decorator
     self.done ? "glyphicon glyphicon-ok" : "glyphicon glyphicon-remove"
   end
 
+  def author_name
+    self.user.name
+  end
+
 end
