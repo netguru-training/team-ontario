@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get 'parent/panel', to: 'parent_panel#index'
 
   root to: 'visitors#index'
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
+
   resources :users
 
   resources :events
@@ -12,4 +13,5 @@ Rails.application.routes.draw do
   resources :kid_events do
     resources :comments
   end
+
 end
