@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024134347) do
+ActiveRecord::Schema.define(version: 20151025082448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20151024134347) do
     t.integer  "points"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "events_type_id"
     t.integer  "family_id"
+    t.integer  "events_type_id"
   end
 
   add_index "events", ["events_type_id"], name: "index_events_on_events_type_id", using: :btree
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20151024134347) do
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "done",       default: false
   end
 
   add_index "kid_events", ["event_id"], name: "index_kid_events_on_event_id", using: :btree
