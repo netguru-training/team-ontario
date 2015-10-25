@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025082448) do
+ActiveRecord::Schema.define(version: 20151025083241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,17 @@ ActiveRecord::Schema.define(version: 20151025082448) do
 
   add_index "kid_events", ["event_id"], name: "index_kid_events_on_event_id", using: :btree
   add_index "kid_events", ["user_id"], name: "index_kid_events_on_user_id", using: :btree
+
+  create_table "kid_scores", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "score"
+    t.date     "finished_at"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "kid_scores", ["user_id"], name: "index_kid_scores_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -117,5 +128,6 @@ ActiveRecord::Schema.define(version: 20151025082448) do
   add_foreign_key "comments", "users"
   add_foreign_key "events", "events_types"
   add_foreign_key "events", "families"
+  add_foreign_key "kid_scores", "users"
   add_foreign_key "users", "families"
 end

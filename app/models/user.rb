@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
   has_many :kid_events
   has_many :events, through: :kid_events
   has_many :comments
+  has_many :kid_scores
 end
