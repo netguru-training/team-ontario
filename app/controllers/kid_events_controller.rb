@@ -1,7 +1,7 @@
 class KidEventsController < ApplicationController
   expose(:kid_event)
   expose(:events) { Event.belonging_to_family @family_id }
-  expose(:users)
+  expose(:users) { User.kids_belonging_to_family @family_id }
 
   before_action :authenticate_user!
   before_action :set_family_id
@@ -10,6 +10,7 @@ class KidEventsController < ApplicationController
   end
 
   def create
+    self.kid_event = KidEvent.new(kid_event_params)
     self.kid_event.done = true if kid_event.decreasing_points?
 
     if kid_event.save
