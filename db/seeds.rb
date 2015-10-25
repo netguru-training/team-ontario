@@ -42,5 +42,21 @@ end
   Comment.create!(content: Faker::Lorem.sentence, user_id: rand(1..4), kid_event_id: rand(1..30) )
 end
 
+settlement_period_names = ['Spring', 'Summer', 'Fall', 'Winter']
+
+kids_ids = User.with_role(:kid).map { |x| x.id }
+
+50.times do
+  KidScore.create!(name: settlement_period_names[rand(0..3)],
+                   finished_at: '2010-01-01',
+                   score: rand(1..100),
+                   user_id: kids_ids.sample)
+end
+
+100.times do
+  KidScore.create!(name: settlement_period_names[rand(0..3)],
+                   score: rand(1..100),
+                   user_id: kids_ids.sample)
+end
 
 puts 'Seeds stop'
