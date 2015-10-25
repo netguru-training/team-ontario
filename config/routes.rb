@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
 
-  resources :events
+  resources :events do
+    resources :comments
+  end
 end
