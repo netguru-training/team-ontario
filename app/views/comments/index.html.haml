@@ -3,7 +3,9 @@
   %thead
     %tr
       %th= 'Content'
+      %th= 'Date'
   %tbody
     - comments.each do |c|
       %tr
         %td= c.content
+        %td= c.created_at || c.updated_at
