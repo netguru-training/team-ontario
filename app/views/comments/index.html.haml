@@ -1,0 +1,9 @@
+%p= link_to 'New', new_kid_event_comment_path
+%table.table.table-condensed
+  %thead
+    %tr
+      %th= 'Content'
+  %tbody
+    - comments.each do |c|
+      %tr
+        %td= c.content
