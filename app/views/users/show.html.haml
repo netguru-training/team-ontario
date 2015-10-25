@@ -23,9 +23,9 @@
   %b User events:
   %hr
     - user.events.each do |event|
-      .jumbotron.container
-        .panel{ "class" => "panel-#{event.events_type.decorate.color}"}
-          - user.kid_events.where(event_id: event.id).each do |kid_event|
+      .container
+        - user.kid_events.where(event_id: event.id).each do |kid_event|
+          .panel{ "class" => "panel-#{event.events_type.decorate.color}"}
             .panel-heading
               = event.name
             .panel-body
@@ -49,7 +49,8 @@
                       = simple_form_for [kid_event, Comment.new], :url => url_for(action: 'create', controller: 'comments', kid_event_id: kid_event.id), method: 'post' do |f|
                         = f.input :content
                         = f.button :submit
-
+        %br
+        %br
 
 
 
