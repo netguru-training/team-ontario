@@ -25,6 +25,7 @@ parent.add_role "parent"
 kid.add_role "kid"
 parent1.add_role "parent"
 kid1.add_role "kid"
+kid2.add_role 'kid'
 
 
 EventsType.create!( name: "punishment")
@@ -45,7 +46,7 @@ end
 
 settlement_period_names = ['Spring', 'Summer', 'Fall', 'Winter']
 
-kids_ids = User.with_role(:kid).map { |x| x.id }
+kids_ids = User.with_role(:kid).ids
 
 50.times do
   KidScore.create!(name: settlement_period_names[rand(0..3)],
