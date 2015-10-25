@@ -12,11 +12,13 @@ class KidEventsController < ApplicationController
   def create
 
     event = Event.find(params[:event_id])
-    kid_event = event.kid_events.create(kid_event_params)
-    kid_event.done = true if kid_event.decreasing_points?
+    params[:user_ids].each do |id|
+      kid_event = event.kid_events.create(user_id: id, event_id: params[:event_id])
+      kid_event.done = true if kid_event.decreasing_points?
+    end
 
     if kid_event.save
-      redirect_to user_path(User.find(params[:kid_event][:user_id])), notice: 'Kid Event was succesfully created'
+      redirect_to events_path, notice: 'Kid Events was succesfully created'
     else
       render :new, warning: kid_event.errors.full_messages.to_sentence
     end
@@ -28,7 +30,4 @@ class KidEventsController < ApplicationController
     @family_id ||= current_user.family_id
   end
 
-  def kid_event_params
-    params.require(:kid_event).permit(:user_id, :event_id)
-  end
 end
