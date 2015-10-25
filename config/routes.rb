@@ -8,10 +8,10 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :events
-
-  resources :kid_events do
-    resources :comments
-  end
+  resources :events, shallow: true do
+    resources :kid_events do
+      resources :comments
+    end
+end
 
 end
