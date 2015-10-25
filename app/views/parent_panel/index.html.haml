@@ -2,12 +2,12 @@
 
 = alert
 
-.col-sm-6.col-md-6.col-lg-6.jumbotron
-  .h3 Add new event
-  = render 'events/form'
-.col-sm-6.col-md-6.col-lg-6.jumbotron
-  .right
-    .h3 Members of #{current_user.family.name}
+.jumbotron
+  .col-sm-6.col-md-6.col-lg-6.jumbotron
+    .h3 Add new event
+    = render 'events/form'
+  .col-sm-6.col-md-6.col-lg-6.jumbotron
+    .h3 Members of #{current_user.family.name} family:
     - family_members.each do |member|
       %li= link_to member.email, member
     %br/
