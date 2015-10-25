@@ -12,5 +12,15 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :kid_scores
 
+
   scope :kids_belonging_to_family, -> (family_id) { where("family_id = ?", family_id).with_role(:kid) }
+
+  def score
+    sum = 0
+    self.events.each do |event|
+      event.events_type.name == 'duty' ? sum += event.points : sum -= event.points
+    end
+    sum
+  end
+
 end

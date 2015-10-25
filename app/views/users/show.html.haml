@@ -13,6 +13,12 @@
       %td
         %b= "Status: "
       %td= user.roles.first.name
+    - if user.has_role? :kid
+      %tr
+        %td
+          %b= "Score: "
+        %td= user.score
+
 - if user.has_role? :kid
   %b User events:
   %hr
@@ -29,6 +35,7 @@
           .panel-footer
             .pull-right
               .span{ 'class' => "#{kid_event.decorate.done?}" }
+
 
 
 
