@@ -2,18 +2,35 @@
 %table.table.table-condensed
   %tbody
     %tr
-      %td= "Name: "
+      %td
+        %b= "Name: "
       %td= user.name
     %tr
-      %td= "User's family: "
+      %td
+        %b= "User's family: "
       %td= user.family.name
+    %tr
+      %td
+        %b= "Status: "
+      %td= user.roles.first.name
 - if user.has_role? :kid
-  %b Family Events:
+  %b User events:
   %hr
-  %ul
-    - user.family.events.each do |event|
-      .alert{ "class" => "alert-#{event.events_type.color}"}
-        %li= event.name
+    - user.events.each do |event|
+      .col-md-5.panel{ "class" => "panel-#{event.events_type.decorate.color}"}
+        - user.kid_events.where(event_id: event.id).each do |kid_event|
+          .panel-heading
+            = event.name
+          .panel-body
+            %b Comments:
+            %hr
+              - kid_event.comments.each do |comment|
+                = comment.content
+          .panel-footer
+            .pull-right
+              .span{ 'class' => "#{kid_event.decorate.done?}" }
+
+
 
 
 

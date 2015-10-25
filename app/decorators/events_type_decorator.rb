@@ -2,7 +2,6 @@ class EventsTypeDecorator < Draper::Decorator
   delegate_all
 
    def color
-
     if self.name == "punishment"
       "danger"
     elsif self.name == "award"
