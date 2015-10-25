@@ -19,6 +19,7 @@ parent = User.create!(email: 'parent@page.com',password: 'pass1234', family_id: 
 parent1 = User.create!(email: 'parent1@page.com',password: 'pass1234', family_id: 2, name: Faker::Name.name)
 kid = User.create!(email: 'kid@page.com',password: 'pass1234', family_id: 1, name: Faker::Name.name)
 kid1 = User.create!(email: 'kid1@page.com',password: 'pass1234', family_id: 2, name: Faker::Name.name)
+kid2 = User.create!(email: 'kid2@page.com',password: 'pass1234', family_id: 1, name: Faker::Name.name)
 
 parent.add_role "parent"
 kid.add_role "kid"
