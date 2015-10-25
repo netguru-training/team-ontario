@@ -1,10 +1,16 @@
 class KidEventsController < ApplicationController
   expose(:kid_event)
+  expose(:kid_events)
   expose(:events) { Event.belonging_to_family @family_id }
   expose(:users) { User.kids_belonging_to_family @family_id }
+  expose(:duties) { EventsType.find(3).kid_events.where(user_id: current_user.id) }
+  expose(:punishments) { EventsType.find(1).kid_events.where(user_id: current_user.id) }
+  expose(:awards) { EventsType.find(2).kid_events.where(user_id: current_user.id) }
+
 
   before_action :authenticate_user!
   before_action :set_family_id
+
 
   def new
   end
@@ -28,6 +34,12 @@ class KidEventsController < ApplicationController
         render :new, warning: kid_event.errors.full_messages.to_sentence
       end
     end
+  end
+
+  def set_as_done
+    kid_event = KidEvent.find(params[:event_id])
+    kid_event.update(done: true)
+    redirect_to action: :index
   end
 
   private

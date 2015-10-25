@@ -1,0 +1,15 @@
+%table.table.table-condensed
+  %thead
+    %tr
+      %th= 'Event name'
+      %th= 'Description'
+      %th= 'Points'
+  %tbody
+    - kid_events.each do |e|
+      %tr
+        %td= e.event.name
+        %td= e.event.description
+        %td= e.event.points
+        %td= e.done
+        - if (e.event.events_type.name == 'duty') && (e.done == false)
+          %td= link_to('Set as done', controller: 'kid_events', action: 'set_as_done', event_id: e.id)

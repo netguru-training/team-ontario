@@ -1,0 +1,20 @@
+.jumbotron
+  .container
+    #content
+      %ul#tabs.nav.nav-tabs{"data-tabs" => "tabs"}
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#awards"} Awards
+        %li
+          %a{"data-toggle" => "tab", :href => "#punishments"} Punishments
+        %li
+          %a{"data-toggle" => "tab", :href => "#duties"} Duties
+      #my-tab-content.tab-content
+        #awards.tab-pane.active
+          %h1 Awards
+          = render 'events', kid_events: awards
+        #punishments.tab-pane
+          %h1 Punishments
+          = render 'events', kid_events: punishments
+        #duties.tab-pane
+          %h1 Duties
+          = render 'events', kid_events: duties
