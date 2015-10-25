@@ -10,11 +10,13 @@ class KidEventsController < ApplicationController
   end
 
   def create
-    self.kid_event = KidEvent.new(kid_event_params)
-    self.kid_event.done = true if kid_event.decreasing_points?
+
+    event = Event.find(params[:event_id])
+    kid_event = event.kid_events.create(kid_event_params)
+    kid_event.done = true if kid_event.decreasing_points?
 
     if kid_event.save
-      redirect_to user_path(current_user), notice: 'Kid Event was succesfully created'
+      redirect_to user_path(User.find(params[:kid_event][:user_id])), notice: 'Kid Event was succesfully created'
     else
       render :new, warning: kid_event.errors.full_messages.to_sentence
     end
